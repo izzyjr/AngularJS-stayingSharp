@@ -1,0 +1,111 @@
+<!--1.2 The Beginning of All Routes-->
+<!--Let's get started creating routes for this super-duper NoteWrangler app! The night is late and the coffee is gettin' cold.-->
+<!--Let's set up our app so we can start wranglin' some notes!-->
+
+<!--1.) Inside the app.js file, declare an AngularJS module for our NoteWrangler app.-->
+<!--For now it will have no dependencies.-->
+<!--2.) What is the name of the module you need to include to use routes? Update the app.js module declaration to include it.-->
+<!--3.) Define the module’s config() function and inject $routeProvider.-->
+<!--4.) Create a simple route for when /notes is in the URL, link to the index.html template in the templates/pages/notes/ directory.-->
+<!--5.) Now, add a new div tag to our index.html with an attribute directive that will include the rendered template for the current route.-->
+
+
+
+<!DOCTYPE html>
+<html lang="en" ng-app="NoteWrangler">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Note Wrangler</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/application.css" />
+  </head>
+
+  <body>
+    <div class="nav-wrapper has-dropdown">
+      <div class="nav-content">
+        <div class="wrapper">
+          <div class="nav-content-layout">
+            <div class="nav-list">
+
+              <a href="#/"
+              class="list-item"
+              ng-click="selected = 'notes'"
+              ng-class="{'active': selected == 'notes'}"> Notes </a>
+
+              <a href="#/users"
+              class="list-item"
+              ng-click="selected = 'users'"
+              ng-class="{'active': selected == 'users'}"> Users </a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-wrapper">
+      <div class="hero-content">
+        <div class="hero"></div>
+      </div>
+    </div>
+
+    <div class="main-wrapper">
+            <div ng-View></div> <!--5.)-->
+    </div>
+
+    <!-- Load Js libs -->
+    <script src="./js/vendor/jquery.js"></script>
+    <script src="./js/vendor/angular.js"></script>
+    <script src="./js/vendor/angular-route.js"></script>
+
+    <script src="./js/app.js"></script>
+
+    <!-- Controllers -->
+    <script src="./js/controllers/notes-create-controller.js"></script>
+    <script src="./js/controllers/notes-edit-controller.js"></script>
+    <script src="./js/controllers/notes-index-controller.js"></script>
+    <script src="./js/controllers/notes-show-controller.js"></script>
+    <script src="./js/controllers/users-index-controller.js"></script>
+    <script src="./js/controllers/users-show-controller.js"></script>
+
+
+  </body>
+</html>
+
+<!--1.10 Outside Controller-->
+<!--In order for a new note to be created by a user on the new notes page,-->
+<!--we need to add a controller and use the $http service to create a new note.-->
+<!--This time around, we'll use an external controller for the new notes page.-->
+
+<!--1.) Attach the NotesCreateController to the new notes route.-->
+<!--2.) Give the controller an alias we can reference in the template.-->
+<!--3.) Use the ngModel directive to save the data from each form input and textarea in a model called note.-->
+<!--Remember the data key on the model matches the form input name. -->
+<!--Look at the description textarea in the notes/new.html template for an example.-->
+<!--4.) Use the ngClick directive to call the saveNote() function of the controller when the save button is clicked.-->
+<!--Remember to pass the note model to the function.-->
+
+<div class="new-note">
+  <div class="new-note-container">
+    <form class="form">
+      <fieldset>
+        <label for="title">Title</label>
+        <input name="title" ng-model="note.title"/> <!--3.)-->
+      </fieldset>
+
+      <fieldset>
+        <label for="description">Description</label>
+        <textarea name="description" ng-model="note.description"></textarea>
+      </fieldset>
+
+      <fieldset>
+        <label for="content">Content</label>
+        <textarea name="content" ng-model="note.content"></textarea> <!--3.)-->
+      </fieldset>
+
+      <button class="btn" ng-click="newNotesCtrl.saveNote(note)">Save</button> <!--4.)-->
+    </form>
+  </div>
+</div>
+
