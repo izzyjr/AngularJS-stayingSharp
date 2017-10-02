@@ -1,0 +1,27 @@
+<!--2.3 Inline Controller & $scope-->
+<!--We have already separated out the duplicate note code into nw‑card.html.-->
+<!--Clean up the template using $scope syntax instead of controllerAs.-->
+
+<!--1.) Inject the $scope service into the controller.-->
+<!--2.) Delete the unnecessary alias for our controller.-->
+<!--3.) Set the header property on the controller's $scope instead of this.-->
+<!--Note: We do not want to modify the string.-->
+<!--4.) Set description property on the controller's $scope instead of this.-->
+<!--Note: We do not want to modify the string.-->
+<!--5.) Display the header and description on the nw-card.html page.-->
+
+<div class="card" title="{{header}}"> <!--5-->
+  <h2 class="h3">{{header}}</h2>
+  <p>{{description}}</p>
+</div>
+
+<!--2.8 A Flexible Card Directive-->
+<!--In order to make the nw-card directive reusable, it needs to accept a few attributes.-->
+
+<!--1.) Give the nw-card directive an isolate scope, and enable it to accept a header and description attribute with two-way bindings.-->
+<!--2.) Now make nw-card.html work for both Notes and Users by accessing the header and description directly from the scope.-->
+
+<div class="card" title="{{header}}"> <!--2.)-->
+  <h2 class="h3">{{header}}</h2>
+  <p>{{description}}</p>
+</div>

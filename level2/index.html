@@ -1,0 +1,82 @@
+<!--2.3 Inline Controller & $scope-->
+<!--We have already separated out the duplicate note code into nw‑card.html.-->
+<!--Clean up the template using $scope syntax instead of controllerAs.-->
+
+<!--1.) Inject the $scope service into the controller.-->
+<!--2.) Delete the unnecessary alias for our controller.-->
+<!--3.) Set the header property on the controller's $scope instead of this.-->
+<!--Note: We do not want to modify the string.-->
+<!--4.) Set description property on the controller's $scope instead of this.-->
+<!--Note: We do not want to modify the string.-->
+<!--5.) Display the header and description on the nw-card.html page.-->
+
+<div class="note-wrapper">
+  <div class="note-content">
+    <div class="notes-header">
+      <h1 title="Notes">Notes</h1>
+    </div>
+
+    <div class="note-wrapper">
+      <a class="card-notes" ng-repeat="note in notesCtrl.notes">
+        <nw-card></nw-card>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!--2.4 Outside Controller & $scope-->
+<!--Now that you are familiar with $scope, let's practice using it with an outside controller.-->
+
+<!--1.) Attach notes to $scope instead of the controller ( this).-->
+<!--2.) Remove the controllerAs controller alias from routes.js.-->
+<!--3.) Update the notes/index.html template to work with $scope.-->
+
+<div class="note-wrapper">
+  <div class="note-content">
+    <div class="notes-header">
+      <h1 title="Notes">Notes</h1>
+    </div>
+
+    <div class="note-wrapper">
+      <a class="card-notes" ng-repeat="note in notes"> <!--3.)-->
+        <nw-card></nw-card>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!--2.9 Making Isolation Work for You-->
+<!--Now that the nw-card directive has an isolate scope, the note cards no longer have access to the variables in their expressions.-->
+<!--Let's fix that and finish making this Directive reusable for both Notes and Users.-->
+
+<!--1.) Add attributes for header and description for the nw-card directive in the notes/index.html template.-->
+<!--The note title should be used for the header, and the note description should be used for the description.-->
+<!--2.) Add attributes for header and description for the nw-card directive in the users/index.html template.-->
+<!--The user name should be used for the header, and the user bio should be used for the description.-->
+
+<!--notes/index.html-->
+<div class="note-wrapper">
+  <div class="note-content">
+    <div class="notes-header">
+      <h1 title="Notes">Notes</h1>
+    </div>
+    <div class="note-wrapper">
+      <a class="card-notes" ng-repeat="note in notes" ng-href="#/notes/{{note.id}}">
+        <nw-card header="note.title" description="note.description"></nw-card> <!--!.)-->
+      </a>
+    </div>
+  </div>
+</div>
+
+<!--users/index.html-->
+<div class="users-wrapper">
+  <h1>Users</h1>
+
+  <div class="users-wrapper">
+    <a class="card-users" ng-repeat="user in users">
+      <nw-card header="user.name" description="user.bio"></nw-card> <!--2.)-->
+    </a>
+  </div>
+</div>
