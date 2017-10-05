@@ -1,0 +1,69 @@
+<!--4.7 Filter All the Things-->
+<!--Let's start cleaning up our notes tweeted page using filters.-->
+<!--On the notes tweeted page, within the tweeted.html template,-->
+<!--use filter to display only notes that have been tweeted (i.e., having a tweeted property set to true).-->
+
+<div class="note-wrapper">
+  <div class="note-content">
+    <div class="notes-header">
+      <h1 title="Notes">Tweeted Notes</h1>
+      <input type="search" ng-model="searchTerm"/><label>Search</label>
+    </div>
+
+    <div class="note-wrapper">
+      <a class="card-notes" ng-repeat="note in notes  | filter:{tweeted: true} | filter: searchTerm" ng-href="#/notes/{{note.id}}"> <!--1.)-->
+        <div class="card" title="{{note.title}}">
+          <h2 class="h3">{{note.title}}</h2>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!--4.8 Chaining Filters-->
+<!--The notes tweeted page has a search field so that users can filter notes.-->
+<!--Let's take advantage of this: add an additional filter to the displayed notes on our notes tweeted page.-->
+
+<div class="note-wrapper">
+  <div class="note-content">
+    <div class="notes-header">
+      <h1 title="Notes">Tweeted Notes</h1>
+      <input type="search" ng-model="searchTerm"/><label>Search</label>
+    </div>
+
+    <div class="note-wrapper">
+      <a class="card-notes" ng-repeat="note in notes  | filter:{tweeted: true} | filter: searchTerm" ng-href="#/notes/{{note.id}}"> <!--1.)-->
+        <div class="card" title="{{note.title}}">
+          <h2 class="h3">{{note.title}}</h2>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!--4.9 A Date Filter -->
+<!--The tweetedDate is now being displayed on each tweeted note card.-->
+<!--Let's format it! See the AngularJS documentation for the appropriate elements to compose the format string.-->
+
+<!--1.) Use a filter to display the tweeted date in our p tag like so: Tweeted on a Monday in October.-->
+<!--2.) It's the middle of the night and you are ready to finish your AngularJS NoteWrangler app!-->
+<!--You realize the title of our card container div would be more beneficial if it included a fancy date along with the title of the note.-->
+<!--Add the date to the end of the title attribute with another pair of double brackets. Format the date inside the brackets like so: Oct. 08.-->
+
+<div class="note-wrapper">
+  <div class="note-content">
+    <div class="notes-header">
+      <h1 title="Notes">Tweeted Notes</h1>
+      <input type="search" ng-model="searchTerm"/><label>Search</label>
+    </div>
+
+    <div class="note-wrapper">
+      <a class="card-notes" ng-repeat="note in notes | filter: {tweeted: true}" ng-href="#/notes/{{note.id}}">
+        <div class="card" title="{{note.title}} {{note.tweetedDate | date: 'MMM. dd'}}"> <!--2.)-->
+          <h2 class="h3">{{note.title}}</h2>
+          <p>{{ note.tweetedDate | date: "'Tweeted on a' EEEE 'in' MMMM"}}</p> <!--1.)-->
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
